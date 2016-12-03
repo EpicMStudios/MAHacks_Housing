@@ -1,3 +1,5 @@
+package com.mahacks.housing;
+
 
 /*
                     _-====-__-======-__-========-_____-============-__
@@ -13,7 +15,7 @@
     /-OO----OO""="OO--OO"="OO--------OO"="OO-------OO"="OO-------OO"=P
    #####################################################################
 
-*/
+ */
 
 public class Applicant {
 
@@ -42,7 +44,7 @@ public class Applicant {
 	final public static byte FAMILY = 4;
 	final public static byte MRVP = 5;
 	final public static byte AHVP = 6;
-	
+
 	private String disability;
 	private String veteranStatus;
 	private int income;
@@ -52,12 +54,11 @@ public class Applicant {
 	private String phone;
 	private String workPhone;
 	private String email;
-	
 	private int timeOnWaitlist;
-	private int positionOnWaitlist;
+	private int id;
 
 	private boolean emergencyHousing;
-	
+
 	private int preferance;
 	final public int HEALTH_BOARD_CONDEMNATION = 1;
 	final public int DISABLED = 2;
@@ -91,7 +92,10 @@ public class Applicant {
 	 * creates a blank application to be updated later based on user input
 	 */
 	public Applicant(){
+		id = 0;
 		firstName = "";
+		middleName = "";
+		sex = false;
 		lastName = "";
 		address = "";
 		mailingAddress = "";
@@ -108,6 +112,33 @@ public class Applicant {
 		preferance = 0; 
 		ssn = "";
 		timeOnWaitlist = 0;
+	}
+	
+	public Applicant(int id, String firstName, String middleName, String lastName, boolean sex,
+			String address, String mailingAddress, String workAddress, int race, boolean isHispanic,
+			String disability,String veteranStatus, int income, String phone, String workPhone,
+			String email, byte housingType, boolean emergencyHousing, int preferance, String ssn, int timeOnWaitlist){
+		this.id = id;
+		this.firstName = firstName;
+		this.middleName = middleName;
+		this.lastName = lastName;
+		this.sex = sex;
+		this.address = address;
+		this.mailingAddress = mailingAddress;
+		this.workAddress = workAddress;
+		this.race = race;
+		this.isHispanic = isHispanic;
+		this.disability = disability;
+		this.veteranStatus = veteranStatus;
+		this.income = income;
+		this.phone = phone;
+		this.workPhone = workPhone;
+		this.email = email;
+		this.housingType = housingType;
+		this.emergencyHousing = emergencyHousing;
+		this.preferance = preferance; 
+		this.ssn = "";
+		this.timeOnWaitlist = 0;
 	}
 
 	public static Applicant copy(Applicant app){
@@ -131,62 +162,6 @@ public class Applicant {
 		app2.setSsn(app.getSsn());
 		return app2;
 	}
-
-//	@Override
-//	public String toString() {
-//		String app = "";
-//		app += firstName + " ";
-//		app += middleName + " ";
-//		app += lastName + "\n";
-//		
-//		if(sex)
-//			app += "Male\n";
-//		else
-//			app += "Female\n";
-//		
-//		if((race & 1) == RACE_WHITE)
-//			app += "White\n";
-//		if((race & 2) == RACE_NATIVE_AMERICAN)
-//			app += "Native American\n";
-//		if((race & 4) == RACE_ASIAN)
-//			app += "Asian\n";
-//		if ((race & 8) == RACE_BLACK)
-//			app += "Black\n";
-//		if ((race & 16) == RACE_PACIFIC_ISLANDER)
-//			app += "Pacific Islander\n";
-//		
-//		if(isHispanic)
-//			app += "hispanic\n";
-//		else
-//			app +="non-hispanic\n";
-//		
-//		
-//		if(housingType == 1)
-//			app += "Elderly\n";
-//		if (housingType == 2)
-//			app += "Handicapped\n";
-//		if(housingType == 3)
-//			app += "Congregate Elderly/Handicapped\n";
-//		if(housingType == 4)
-//			app += "Family\n";
-//		if(housingType == 5)
-//			app += "MRvp\n";
-//		if(housingType == 6)
-//			app += "AHVP\n";
-//		
-//		if(!(veteranStatus.equals("")))
-//			app += "Veteran\n";
-//			
-//		app += "$" + income + "\n";
-//		app += adress.toString() + "\n";
-//		app += mailingAdress.toString() + "\n";
-//		app += phone + "\n";
-//		app += email + "\n";
-//		if(emergencyHousing)
-//			app += "Emergency Housing Applicant\n";
-//		app += ssn;
-//		return app;
-//	}
 
 	public String getFirstName() {
 		return firstName;
@@ -219,15 +194,15 @@ public class Applicant {
 	public void setSex(boolean sex){
 		this.sex = sex;
 	}
-	
+
 	public int getRace(){
 		return race;
 	}
-	
+
 	public void setRace(int race){
 		this.race = race;
 	}
-	
+
 	public void addRace(int race){
 		this.race += race; 
 	}
@@ -331,7 +306,7 @@ public class Applicant {
 	private String getVeteranStatus() {
 		return veteranStatus;
 	}
-	
+
 	public void setVeteranStatus(String veteranStatus) {
 		this.veteranStatus = veteranStatus;
 	}
@@ -353,11 +328,12 @@ public class Applicant {
 	}
 
 	public int getPositionOnWaitlist() {
-		return positionOnWaitlist;
+		return id;
 	}
 
 	public void setPositionOnWaitlist(int positionOnWaitlist) {
-		this.positionOnWaitlist = positionOnWaitlist;
+		this.id = positionOnWaitlist;
 	}
 
 }
+
