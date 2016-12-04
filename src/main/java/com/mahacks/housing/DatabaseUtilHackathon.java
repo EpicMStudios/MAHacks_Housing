@@ -36,14 +36,14 @@ class DatabaseUtilHackathon
 	     
 	     stmt = c.createStatement();
 	     String sql = "CREATE TABLE IF NOT EXISTS Applicants " +
-	       " (id int NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+	       " (id integer NOT NULL PRIMARY KEY AUTOINCREMENT, " +
 	       " firstName text NOT NULL, " +
 	       " middleName text NOT NULL, " +
 	       " lastName text NOT NULL, " +
-	       " sex int NOT NULL, " +
-	       " race int NOT NULL, " +
-	       " isHispanic int NOT NULL, " +
-	       " housingType int NOT NULL, " +
+	       " sex integer NOT NULL, " +
+	       " race integer NOT NULL, " +
+	       " isHispanic integer NOT NULL, " +
+	       " housingType integer NOT NULL, " +
 	       " disability text NOT NULL, " +
 	       " veteran text NOT NULL, " +
 	       " income integer NOT NULL, " +
@@ -55,7 +55,7 @@ class DatabaseUtilHackathon
 	       " emergencyHousing integer NOT NULL, " +
 	       " preference integer NOT NULL, " +
 	       " ssn text NOT NULL, " +
-	       " timeOnWaitingList int NOT NULL";
+	       " timeOnWaitingList integer NOT NULL);";
 	     stmt.executeUpdate(sql);
 	     stmt.close();
 	     c.close();

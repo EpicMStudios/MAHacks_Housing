@@ -37,20 +37,27 @@ class Main {
         currentApplicant.setRace(2);
         // currentApplicant.setHispanic((boolean) values.get("hispanic"));
         currentApplicant.setHispanic(true);
-        System.out.println("John is a trap programmer");
         System.out.println(currentApplicant.getFirstName());
         res.redirect("/apply_2");
         return GOODRESPONSE;
     }
 
     public static String handleSecondApplication(Request req, Response res, Applicant currentApplicant) {
-        System.out.println(req.body());
+        HashMap<String, String> values = parsePost(req.body());
+        // currentApplicant.setGender(values.get("gender") == "Elderly");
+        currentApplicant.setHousingType(2);
+        currentApplicant.setPreference(2);
+        currentApplication.setWorkAddress(values.get("city"));
         res.redirect("/apply_3");
         return GOODRESPONSE;
     }
 
     public static String handleThirdApplication(Request req, Response res, Applicant currentApplicant) {
-        System.out.println(req.body());
+        HashMap<String, String> values = parsePost(req.body());
+        currentApplicant.setDisability(values.get("wheelchair"));
+        currentApplicant.setDisability(currentApplicant.getDisability() + values.get("bedrooms"));
+        currentApplicant.setDisability(currentApplicant.getDisability() + values.get("transitional"));
+        currentApplicant.setDisability(currentApplicant.getDisability() + values.get("owncar"));
         res.redirect("/");
         return GOODRESPONSE;
     }
@@ -86,21 +93,21 @@ class Main {
 
     public static void main(String args[]) {
         Applicant currentApplicant = new Applicant();
-        DatabaseUtilHackathon.createTable("/media/application.db");
+        DatabaseUtilHackathon.createTable("/home/jakob/temp/application.db");
         
         staticFileLocation("/public");
         get("/", (req, res) -> {return index();});
         get("/apply", (req, res) -> {
                 return new ModelAndView(new HashMap<>(), "application.html");
             }, new FreeMarkerEngine());
-        // post("/apply", (req, res) -> {return handleFirstApplication(req, res, currentApplicant);});
+         post("/apply", (req, res) -> {return handleFirstApplication(req, res, currentApplicant);});
         get("/apply_2", (req, res) -> {
                 return new ModelAndView(new HashMap<>(), "application2.html");
             }, new FreeMarkerEngine());
-        //post("/apply_2", (req, res) -> {return handleSecondApplication(req, res, currentApplicant);});
+        post("/apply_2", (req, res) -> {return handleSecondApplication(req, res, currentApplicant);});
         get("/apply_3", (req, res) -> {
                 return new ModelAndView(new HashMap<>(), "application3.html");
             }, new FreeMarkerEngine());
-        //post("/apply_3", (req, res) -> {return handleThirdApplication(req, res, currentApplicant);});
+        post("/apply_3", (req, res) -> {return handleThirdApplication(req, res, currentApplicant);});
     }
 }

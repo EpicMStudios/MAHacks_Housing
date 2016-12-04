@@ -1,3 +1,5 @@
+package com.mahacks.housing;
+
 public class Util
 {
    public static void testPrintstreams()
