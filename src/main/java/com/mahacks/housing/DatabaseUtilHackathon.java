@@ -1,6 +1,10 @@
+package com.mahacks.housing;
+
+import java.util.ArrayList;
+
 import java.sql.*;
 
-public class DatabaseUtil
+class DatabaseUtilHackathon
 {
    public static Connection connect(String path)
      {
@@ -31,8 +35,8 @@ public class DatabaseUtil
 	     c = connect(dbPath);
 	     
 	     stmt = c.createStatement();
-	     String sql = "CREATE TABLE Applicants " +
-	       " (id int NOT NULL, " +
+	     String sql = "CREATE TABLE IF NOT EXISTS Applicants " +
+	       " (id int NOT NULL PRIMARY KEY AUTOINCREMENT, " +
 	       " firstName text NOT NULL, " +
 	       " middleName text NOT NULL, " +
 	       " lastName text NOT NULL, " +
@@ -50,7 +54,7 @@ public class DatabaseUtil
 	       " email text NOT NULL, " +
 	       " emergencyHousing integer NOT NULL, " +
 	       " preference integer NOT NULL, " +
-	       " ssn text NOT NULL, "
+	       " ssn text NOT NULL, " +
 	       " timeOnWaitingList int NOT NULL";
 	     stmt.executeUpdate(sql);
 	     stmt.close();
@@ -101,25 +105,25 @@ public class DatabaseUtil
    public static void setAtoBWhereCIsD(String dbpath, String table, String a, String b, String c, String d)
      {
 	
-	Connection c = null;
+	Connection cunt = null;
 	Statement stmt = null;
 	try 
 	  {
 	     
 	     Class.forName("org.sqlite.JDBC");
-	     c = connect(dbpath);
-	     c.setAutoCommit(false);
+	     cunt = connect(dbpath);
+	     cunt.setAutoCommit(false);
 	     
-	     stmt = c.createStatement();
+	     stmt = cunt.createStatement();
 	     String sql = "UPDATE "+ table +" set "+ a +"="+ b +" where "+ c +"="+ d +" ;";
 	     stmt.executeUpdate(sql);
-	     c.commit();
+	     cunt.commit();
 	     
 	     //ResultSet rs = stmt.executeQuery( "SELECT * FROM "+table+";" );
 	     
 	     //rs.close();
 	     stmt.close();
-	     c.close();
+	     cunt.close();
 	  }
 	catch ( Exception e ) 
 	  {
@@ -136,26 +140,26 @@ public class DatabaseUtil
      {
 	
 	
-	Connection c = null;
+	Connection cuck = null;
 	Statement stmt = null;
 	try
 	  {
 	     
 	     
 	     Class.forName("org.sqlite.JDBC");
-	     c = connect(dbpath);
-	     c.setAutoCommit(false);
+	     cuck = connect(dbpath);
+	     cuck.setAutoCommit(false);
 	     
-	     stmt = c.createStatement();
+	     stmt = cuck.createStatement();
 	     String sql = "UPDATE "+ table +" set "+ a +"="+ b +" where "+ c +"="+ d +" ;";
 	     stmt.executeUpdate(sql);
-	     c.commit();
+	     cuck.commit();
 	     
 	     //ResultSet rs = stmt.executeQuery( "SELECT * FROM "+table+";" );
 	     
 	     //rs.close();
 	     stmt.close();
-	     c.close();
+	     cuck.close();
 	  }
 	
 	catch ( Exception e )
@@ -175,26 +179,26 @@ public class DatabaseUtil
      {
 	
 	
-	Connection c = null;
+	Connection cuck = null;
 	Statement stmt = null;
 	try
 	  {
 	     
 	     
 	     Class.forName("org.sqlite.JDBC");
-	     c = connect(dbpath);
-	     c.setAutoCommit(false);
+	     cuck = connect(dbpath);
+	     cuck.setAutoCommit(false);
 	     
-	     stmt = c.createStatement();
+	     stmt = cuck.createStatement();
 	     String sql = "UPDATE "+ table +" set "+ a +"="+ b +" where "+ c +"="+ d +" ;";
 	     stmt.executeUpdate(sql);
-	     c.commit();
+	     cuck.commit();
 	     
 	     //ResultSet rs = stmt.executeQuery( "SELECT * FROM "+table+";" );
 	     
 	     //rs.close();
 	     stmt.close();
-	     c.close();
+	     cuck.close();
 	  }
 	
 	catch ( Exception e )
@@ -214,26 +218,26 @@ public class DatabaseUtil
      {
 	
 	
-	Connection c = null;
+	Connection cpenis = null;
 	Statement stmt = null;
 	try
 	  {
 	     
 	     
 	     Class.forName("org.sqlite.JDBC");
-	     c = connect(dbpath);
-	     c.setAutoCommit(false);
+	     cpenis = connect(dbpath);
+	     cpenis.setAutoCommit(false);
 	     
-	     stmt = c.createStatement();
+	     stmt = cpenis.createStatement();
 	     String sql = "UPDATE "+ table +" set "+ a +"="+ b +" where "+ c +"="+ d +" ;";
 	     stmt.executeUpdate(sql);
-	     c.commit();
+	     cpenis.commit();
 	     
 	     //ResultSet rs = stmt.executeQuery( "SELECT * FROM "+table+";" );
 	     
 	     //rs.close();
 	                        stmt.close();
-	     c.close();
+	     cpenis.close();
 	  }
 
 	catch ( Exception e )
@@ -305,7 +309,6 @@ public class DatabaseUtil
 	     
 	     //ResultSet rs = stmt.executeQuery( "SELECT * FROM "+table+";" );
 	     
-	     rs.close();
 	     stmt.close();
 	     c.close();
 	  }
@@ -336,7 +339,7 @@ public class DatabaseUtil
 	  {
 	     
 	     Class.forName("org.sqlite.JDBC");
-	     c = connect(dbPath)
+	     c = connect(dbPath);
 	     c.setAutoCommit(false);
 	     //System.out.println("Opened database successfully");
 	     
@@ -345,10 +348,7 @@ public class DatabaseUtil
 	     while ( rs.next() ) 
 	       {
 
-		  Applicants.add(new Applicant(rs.getInt("id"), rs.getString("firstName"), rs.getString("middleName"), rs.getString("lastName"), rs.getInt("sex"),
-					      rs.getString(" address"), rs.getString(" mailingAddress"), rs.getString("workAddress"), rs.getInt("race"), rs.getInt("isHispanic"),
-					      rs.getString("disability"),String veteranStatus"), int income"), rs.getString(" phone"), rs.getString("workPhone"),
-					      rs.getString("email"), rs.getInt("housingType"), rs.getInt("emergencyHousing"), rs.getInt("preferance"), rs.getString(" ssn"), rs.getInt("timeOnWaitlist"));
+                   applicants.add(new Applicant(rs.getInt("id"), rs.getString("firstName"), rs.getString("middleName"), rs.getString("lastName"), rs.getInt("sex") == 1, rs.getString("address"), rs.getString("mailingAddress"), rs.getString("workAddress"), rs.getInt("race"), rs.getInt("isHispanic") == 1, rs.getString("disability"), rs.getString("VeteranStatus"), rs.getInt("income"), rs.getString(" phone"), rs.getString("workPhone"), rs.getString("email"), (byte) rs.getInt("housingType"), rs.getInt("emergencyHousing") == 1, rs.getInt("preferance"), rs.getString("ssn"), rs.getInt("timeOnWaitlist")));
 		  
 	       }
 	     
@@ -364,7 +364,7 @@ public class DatabaseUtil
 	  }
 	
 	System.out.println("Operation done successfully");
-	return applicants.toArray();
+	return (Applicant[]) applicants.toArray();
      }
    
    
