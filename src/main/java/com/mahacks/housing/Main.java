@@ -34,7 +34,36 @@ class Main {
         currentApplicant.setWorkPhone(values.get("worknum"));
         currentApplicant.setSsn(values.get("SSN"));
         //currentApplicant.setRace((values.get("nationality1")); //
-        currentApplicant.setRace(2);
+       byte race = 0;
+
+       if(values.get("nationality1"))
+	 {
+	    race += 1;
+	 }
+       if(values.get("nationality2"))
+	 {
+	    race+= 2;
+	 }
+       if(values.get("nationality3"))
+	 {
+
+	    race += 4;
+	 }
+
+       if(values.get("nationality4"))
+	 {
+
+	    race+= 8;
+	 }
+       if(values.get("nationality5"))
+	 {
+
+	    race += 16;
+	 }
+
+       
+
+       currentApplicant.setRace(race);
         // currentApplicant.setHispanic((boolean) values.get("hispanic"));
         currentApplicant.setHispanic(true);
         System.out.println(currentApplicant.getFirstName());
@@ -47,8 +76,64 @@ class Main {
         // currentApplicant.setGender(values.get("gender") == "Elderly");
         currentApplicant.setHousingType(2);
         currentApplicant.setPreference(2);
-        currentApplication.setWorkAddress(values.get("city"));
-        res.redirect("/apply_3");
+        currentApplicant.setWorkAddress(values.get("city"));
+       byte fts;
+       if(values.get("fuckthisshit") == "Elderly")
+	 {
+
+	    fts = 1;
+	    
+	 }
+       else if(values.get("fuckthisshit") == "Non-Elderly, Handicapped")
+	 {
+
+
+	                fts = 2;
+
+	 }
+       else if(values.get("fuckthisshit") == "Congregate Elderly/Handicapped")
+	 {
+
+
+
+	                            fts = 3;
+
+	 }
+
+       else if(values.get("fuckthisshit") == "Family")
+	 {
+
+
+
+	                            fts = 4;
+
+	 }
+
+       else if(values.get("fuckthisshit") == "AHVP")
+	 {
+
+
+
+	                            fts = 5;
+
+	 }
+
+       else if(values.get("fuckthisshit") == "MRVP")
+	 {
+
+
+
+	                            fts = 6;
+
+	 }
+
+       
+       
+       currentApplicant.setHousingType(fts);
+
+       
+       
+       res.redirect("/apply_3");
         return GOODRESPONSE;
     }
 
