@@ -36,26 +36,26 @@ class Main {
         //currentApplicant.setRace((values.get("nationality1")); //
        byte race = 0;
 
-       if(values.get("nationality1"))
+       if(values.get("nationality1") == "White")
 	 {
 	    race += 1;
 	 }
-       if(values.get("nationality2"))
+       if(values.get("nationality2") == "Black")
 	 {
 	    race+= 2;
 	 }
-       if(values.get("nationality3"))
+       if(values.get("nationality3") == "AmericanNative")
 	 {
 
 	    race += 4;
 	 }
 
-       if(values.get("nationality4"))
+       if(values.get("nationality4") == "PacificIslander")
 	 {
 
 	    race+= 8;
 	 }
-       if(values.get("nationality5"))
+       if(values.get("nationality5") == "Asian")
 	 {
 
 	    race += 16;
@@ -74,10 +74,10 @@ class Main {
     public static String handleSecondApplication(Request req, Response res, Applicant currentApplicant) {
         HashMap<String, String> values = parsePost(req.body());
         // currentApplicant.setGender(values.get("gender") == "Elderly");
-        currentApplicant.setHousingType(2);
-        currentApplicant.setPreference(2);
+        currentApplicant.setHousingType((byte) 2);
+        currentApplicant.setPreferance(2);
         currentApplicant.setWorkAddress(values.get("city"));
-       byte fts;
+       byte fts = 0;
        if(values.get("fuckthisshit") == "Elderly")
 	 {
 
@@ -181,7 +181,9 @@ class Main {
         DatabaseUtilHackathon.createTable("/home/jakob/temp/application.db");
         
         staticFileLocation("/public");
-        get("/", (req, res) -> {return index();});
+        get("/", (req, res) -> {
+                return new ModelAndView(new HashMap<>(), "Frontpage.html");
+            }, new FreeMarkerEngine());
         get("/apply", (req, res) -> {
                 return new ModelAndView(new HashMap<>(), "application.html");
             }, new FreeMarkerEngine());
@@ -194,5 +196,10 @@ class Main {
                 return new ModelAndView(new HashMap<>(), "application3.html");
             }, new FreeMarkerEngine());
         post("/apply_3", (req, res) -> {return handleThirdApplication(req, res, currentApplicant);});
+        get("/whereami", (req, res) -> {
+                HashMap<String, String> values = new HashMap<>();
+                values.put("position", "1");
+                return new ModelAndView(values, "whereami.html");
+            }, new FreeMarkerEngine());
     }
 }
