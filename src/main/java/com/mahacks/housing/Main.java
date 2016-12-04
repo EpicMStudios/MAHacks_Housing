@@ -66,7 +66,7 @@ class Main {
        currentApplicant.setRace(race);
         // currentApplicant.setHispanic((boolean) values.get("hispanic"));
         currentApplicant.setHispanic(true);
-       DatabaseUtilHackathon.insertInto("/home/jakob/temp/application.db", "Applicants", currentApplicant.getId(), currentApplicant.getFirstName(), currentApplicant.getMiddleName(), currentApplicant.getLastName(), currentApplicant.getSex(), currentApplicant.getRace(), currentApplicant.isHispanic(), currentApplicant.getHousingType(), currentApplicant.getDisability(), currentApplicant.getVeteran(), currentApplicant.getIncome(), currentApplicant.getAddress(), currentApplicant.getMailingAddress(), currentApplicant.getPhone(), currentApplicant.getWorkPhone(), currentApplicant.getEmail(), currentApplicant.getEmergencyHousing(), currentApplicant.getPreference(), currentApplicant.getSsn(), currentApplicant.getTimeOnWaitingList());
+        DatabaseUtilHackathon.insertInto("/home/jakob/temp/application.db", "Applicants", currentApplicant.getFirstName(), currentApplicant.getMiddleName(), currentApplicant.getLastName(), currentApplicant.getSex() ? 1 : 0, currentApplicant.getRace(), currentApplicant.isHispanic() ? 1 : 0, currentApplicant.getHousingType(), currentApplicant.getDisability(), currentApplicant.getVeteranStatus(), "0", currentApplicant.getAddress(), currentApplicant.getMailingAddress(), currentApplicant.getPhone(), currentApplicant.getWorkPhone(), currentApplicant.getEmail(), currentApplicant.isEmergencyHousing() ? 1 : 0, currentApplicant.getPreferance(), currentApplicant.getSsn(), 2);
         System.out.println(currentApplicant.getFirstName());
         res.redirect("/apply_2");
         return GOODRESPONSE;

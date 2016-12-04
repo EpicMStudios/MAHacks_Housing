@@ -279,7 +279,7 @@ public class Applicant {
 		this.emergencyHousing = emergencyHousing;
 	}
 
-	private String getSsn() {
+	public String getSsn() {
 		return ssn;
 	}
 
@@ -303,7 +303,7 @@ public class Applicant {
 		this.disability = disability;
 	}
 
-	private String getVeteranStatus() {
+	public String getVeteranStatus() {
 		return veteranStatus;
 	}
 

@@ -71,7 +71,7 @@ class DatabaseUtilHackathon
 	
      }
    
-   public static void insertInto(String dbPath, String table, int id, String firstName, String middleName, String lastName, int sex, int race, int isHispanic, int housingType, String disability, String veteran, String income, String address, String mailingAddress, String phone, String workPhone, String email, int emergencyHousing, int preference, String ssn, int timeOnWaitingList)
+   public static void insertInto(String dbPath, String table, String firstName, String middleName, String lastName, int sex, int race, int isHispanic, int housingType, String disability, String veteran, String income, String address, String mailingAddress, String phone, String workPhone, String email, int emergencyHousing, int preference, String ssn, int timeOnWaitingList)
      {
 	
 	Connection c = null;
